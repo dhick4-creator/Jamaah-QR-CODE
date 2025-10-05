@@ -122,7 +122,7 @@ unlink(__DIR__ . "/maintenance.flag");
 
 echo "<p class='success'>✅ Update berhasil!</p>";
 echo "</div>";
-echo "<a href='dashboard.php' class='btn'>⬅️ Kembali ke Dashboard</a>";
+echo "<a href='dashboard' class='btn'>⬅️ Kembali ke Dashboard</a>";
 echo "</body></html>";
 ?>
 
