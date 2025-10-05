@@ -64,6 +64,9 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
       <a href="server-info" class="btn btn-light border menu-btn">
         <i class="fa-solid fa-code text-success"></i> Cek Info Server
       </a>
+      <a href="cek_update" class="btn btn-light border menu-btn">
+        <i class="fa-solid fa-arrow-up text-primary"></i> Update Aplikasi
+      </a>
       <!-- <a href="update_db" class="btn btn-light border menu-btn">
         <i class="fa-solid fa-database text-warning"></i> Update Versi Database
       </a> -->
