@@ -1,0 +1,5 @@
+- [ ] Ubah background header tabel di belum_absensi.php menjadi solid blue (#007bff) seperti di siswa.php
+- [ ] Tambahkan vertical-align: middle pada .table td untuk konsistensi
+- [ ] Sesuaikan background body menjadi #f8f9fa seperti di siswa.php
+- [ ] Sesuaikan box-shadow card menjadi 0 4px 6px rgba(0, 0, 0, 0.1) untuk match
+- [ ] Hapus backdrop-filter dan background rgba pada card jika perlu

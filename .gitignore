@@ -1,0 +1,40 @@
+# Database files
+*.sql
+db-*.sql
+fix_db_user.sql
+
+# Config files
+config.php
+
+# Uploads and assets
+uploads/
+assets/qr/
+qr_codes/
+tmp_update/
+backup/
+
+# Logs and temp
+*.log
+*.tmp
+maintenance.flag
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Composer
+vendor/
+
+# Node modules if any
+node_modules/
+
+# PHPExcel temp
+phpexcel/Examples/
+phpexcel/Documentation/
+
+# Backup folders
+backup/
