@@ -101,8 +101,8 @@ $currentVersion = "1.0.0";
     const currentVersion = "<?= $currentVersion ?>";
     const statusDiv = document.getElementById("status");
 
-    // Ambil version.json dari GitHub
-    fetch("https://raw.githubusercontent.com/nirsinggih/update-absensi-qr/main/version.json")
+    // Ambil version.json dari repository lokal
+    fetch("./version.json")
       .then(res => res.json())
       .then(data => {
         const latestVersion = data.version;
