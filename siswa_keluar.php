@@ -6,11 +6,11 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
 }
 include 'config.php';
 
-if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    require __DIR__ . '/vendor/autoload.php';
-} else {
-    die('Error: vendor/autoload.php not found. Please run composer install.');
+// Require phpqrcode library (upload qrlib.php to vendor/phpqrcode/qrlib.php manually if missing)
+if (!file_exists('vendor/phpqrcode/qrlib.php')) {
+    die('Error: Library phpqrcode tidak ditemukan. Silakan upload qrlib.php ke vendor/phpqrcode/qrlib.php');
 }
+require 'vendor/phpqrcode/qrlib.php';
 
 // Aktifkan siswa kembali
 if (isset($_GET['aktifkan'])) {

@@ -116,6 +116,11 @@ $logo = $profil['logo'] ?? 'default.png';
         <i class="fas fa-exclamation-triangle"></i> Sesi Anda telah berakhir karena tidak ada aktivitas selama 30 menit. Silakan login kembali.
       </div>
     <?php endif; ?>
+    <?php if (isset($_GET['error']) && $_GET['error'] == '1'): ?>
+      <div class="alert alert-danger text-center">
+        <i class="fas fa-times-circle"></i> Login gagal! Username atau password salah. Silakan coba lagi.
+      </div>
+    <?php endif; ?>
     <form method="post" action="cek" class="mt-4">
       <div class="form-floating mb-3">
         <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>

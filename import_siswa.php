@@ -6,12 +6,10 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
 }
 include 'config.php';
 
-if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    require __DIR__ . '/vendor/autoload.php';
-} else {
-    die('Error: vendor/autoload.php not found. Please run composer install.');
-}
 require_once 'phpexcel/Classes/PHPExcel.php'; // pakai PHPExcel klasik
+
+// Require phpqrcode library
+require 'vendor/phpqrcode/phpqrcode/qrlib.php';
 
 $msg = "";
 $berhasil = 0;

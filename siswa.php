@@ -15,11 +15,8 @@ include 'config.php';
 
 
 
-if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    require __DIR__ . '/vendor/autoload.php';
-} else {
-    die('Error: vendor/autoload.php not found. Please run composer install.');
-}
+// Require phpqrcode library
+require 'vendor/phpqrcode/phpqrcode/qrlib.php';
 
 /* ==== Buat tabel users jika belum ada ====
 CREATE TABLE IF NOT EXISTS users (

@@ -46,7 +46,8 @@ if ($result->num_rows > 0) {
     exit;
 
 } else {
-    echo "Login gagal, username atau password salah.";
+    header("Location: index.php?error=1");
+    exit;
 }
 ?>
 

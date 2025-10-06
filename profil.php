@@ -23,6 +23,9 @@ if (isset($_POST['simpan'])) {
     if (!empty($_FILES['logo']['name'])) {
         $ext = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));
         $logo = "logo_" . time() . "." . $ext;
+        if (!is_dir("uploads")) {
+            mkdir("uploads", 0777, true);
+        }
         move_uploaded_file($_FILES['logo']['tmp_name'], "uploads/" . $logo);
     }
 
@@ -32,6 +35,9 @@ if (isset($_POST['simpan'])) {
         $ext = strtolower(pathinfo($_FILES['background']['name'], PATHINFO_EXTENSION));
         if ($ext === "jpg" || $ext === "jpeg") {
             $background = "background_" . time() . ".jpg";
+            if (!is_dir("uploads")) {
+                mkdir("uploads", 0777, true);
+            }
             move_uploaded_file($_FILES['background']['tmp_name'], "uploads/" . $background);
         } else {
             $msg_profil = "<span style='color:red;'>Background harus format JPG!</span>";
@@ -47,7 +53,9 @@ if (isset($_POST['simpan'])) {
     WHERE id=" . $profil['id']);
 
     if (!$msg_profil) {
-        $msg_profil = "<span style='color:green;'>Profil sekolah berhasil diperbarui!</span>";
+        $msg_profil = "<div class='progress'>
+            <div class='progress-bar progress-bar-striped progress-bar-animated bg-success' role='progressbar' style='width: 100%'></div>
+        </div>";
     }
 
     $q = $conn->query("SELECT * FROM profil_sekolah LIMIT 1");
