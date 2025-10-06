@@ -142,7 +142,7 @@ if (isset($_POST['simpan'])) {
         <div class="card mb-4">
             <div class="card-header">Informasi Sekolah</div>
             <div class="card-body">
-                <?php if ($msg_profil) echo "<div class='alert alert-info'>$msg_profil</div>"; ?>
+                <?php if ($msg_profil) echo $msg_profil; ?>
                 <form method="POST" enctype="multipart/form-data" class="row g-3">
                     <div class="col-md-6">
                         <label class="form-label">Nama Sekolah</label>
