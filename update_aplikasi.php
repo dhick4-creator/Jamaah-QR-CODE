@@ -77,41 +77,59 @@ if ($zip->open($updateFile) === TRUE) {
 // 5. Backup file lama
 echo "Membuat backup...<br>";
 mkdir($backupDir, 0755, true);
+
+// Collect files to backup
+$filesToBackup = [];
 $iterator = new RecursiveIteratorIterator(
     new RecursiveDirectoryIterator(__DIR__, RecursiveDirectoryIterator::SKIP_DOTS),
     RecursiveIteratorIterator::SELF_FIRST
 );
 foreach ($iterator as $item) {
     if (strpos($item, 'backup') !== false || strpos($item, 'tmp_update') !== false) continue;
-    $targetPath = $backupDir . str_replace(__DIR__ . DIRECTORY_SEPARATOR, '', $item);
-    if ($item->isDir()) {
-        mkdir($targetPath, 0755, true);
-    } else {
-        copy($item, $targetPath);
-        echo "<span class='file'>📦 Backup: " . htmlspecialchars(str_replace(__DIR__ . "/", '', $item)) . "</span><br>";
-        ob_flush(); flush();
+    if (!$item->isDir()) {
+        $filesToBackup[] = $item;
     }
+}
+
+$totalBackupFiles = count($filesToBackup);
+$processedBackup = 0;
+
+foreach ($filesToBackup as $item) {
+    $targetPath = $backupDir . str_replace(__DIR__ . DIRECTORY_SEPARATOR, '', $item);
+    copy($item, $targetPath);
+    $processedBackup++;
+    $percentage = round(($processedBackup / $totalBackupFiles) * 100);
+    echo "Backup progress: $percentage%<br>";
+    ob_flush(); flush();
 }
 echo "Backup selesai di: <b>$backupDir</b><br>";
 ob_flush(); flush();
 
 // 6. Replace file lama dengan yang baru
 echo "Mengganti file lama...<br>";
+
+// Collect files to update
+$filesToUpdate = [];
 $iterator = new RecursiveIteratorIterator(
     new RecursiveDirectoryIterator($tmpDir, RecursiveDirectoryIterator::SKIP_DOTS),
     RecursiveIteratorIterator::SELF_FIRST
 );
 foreach ($iterator as $item) {
-    $targetPath = __DIR__ . DIRECTORY_SEPARATOR . str_replace($tmpDir, '', $item);
-    if ($item->isDir()) {
-        if (!is_dir($targetPath)) {
-            mkdir($targetPath, 0755, true);
-        }
-    } else {
-        copy($item, $targetPath);
-        echo "<span class='file'>📝 Update: " . htmlspecialchars(str_replace($tmpDir, '', $item)) . "</span><br>";
-        ob_flush(); flush();
+    if (!$item->isDir()) {
+        $filesToUpdate[] = $item;
     }
+}
+
+$totalUpdateFiles = count($filesToUpdate);
+$processedUpdate = 0;
+
+foreach ($filesToUpdate as $item) {
+    $targetPath = __DIR__ . DIRECTORY_SEPARATOR . str_replace($tmpDir, '', $item);
+    copy($item, $targetPath);
+    $processedUpdate++;
+    $percentage = round(($processedUpdate / $totalUpdateFiles) * 100);
+    echo "Update progress: $percentage%<br>";
+    ob_flush(); flush();
 }
 
 // 7. Bersihkan tmp_update/

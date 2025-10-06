@@ -1,0 +1,7 @@
+{
+    "name": "local/jamaah-qr-code",
+    "description": "Jamaah QR Code Attendance System",
+    "require": {
+        "phpqrcode/phpqrcode": "dev-master"
+    }
+}

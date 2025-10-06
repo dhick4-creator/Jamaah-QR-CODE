@@ -1,4 +1,12 @@
 #
+## [1.2.4] - 2025-10-06
+### Added
+- Menambahkan dependency management dengan Composer untuk library phpqrcode.
+### Changed
+- Update progress di update_aplikasi.php sekarang menampilkan persentase saja tanpa listing file.
+### Fixed
+- Perbaikan error require vendor/phpqrcode/qrlib.php dengan instalasi library via Composer.
+#
 ## [1.2.3] - 2025-10-06
 ### Changed
 - Hapus seluruh tampilan versi aplikasi di menu dashboard.
