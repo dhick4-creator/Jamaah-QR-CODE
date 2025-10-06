@@ -16,7 +16,7 @@ include 'config.php';
 
 
 // Require phpqrcode library
-require 'vendor/phpqrcode/phpqrcode/phpqrcode.php';
+require 'vendor/phpqrcode/phpqrcode.php';
 
 /* ==== Buat tabel users jika belum ada ====
 CREATE TABLE IF NOT EXISTS users (
@@ -39,20 +39,6 @@ if (isset($_POST['simpan'])) {
                          VALUES ('$nis', '$nisn', '$nama', '$kelas', 'aktif')")) {
         echo "Error menyimpan data siswa: " . mysqli_error($conn);
         exit;
-    }
-
-    // Buat akun user untuk siswa
-    $username = $nisn;
-    $password = md5($nisn);
-    $role     = 'siswa';
-
-    $cek_user = mysqli_query($conn, "SELECT id FROM users WHERE username='$username' LIMIT 1");
-    if (mysqli_num_rows($cek_user) == 0) {
-        if (!mysqli_query($conn, "INSERT INTO users (username, nama, password, role)
-                             VALUES ('$username', '$nama', '$password', '$role')")) {
-            echo "Error membuat akun siswa: " . mysqli_error($conn);
-            exit;
-        }
     }
 
     // Generate QR Jamaah
@@ -85,12 +71,7 @@ if (isset($_POST['update'])) {
         exit;
     }
 
-    if (!mysqli_query($conn, "UPDATE users
-                         SET username='$nisn', nama='$nama', password=md5('$nisn')
-                         WHERE username='$old_nisn' AND role='siswa'")) {
-        echo "Error memperbarui akun siswa: " . mysqli_error($conn);
-        exit;
-    }
+
 
     $qr_dir = "assets/qr/";
     if (!is_dir($qr_dir)) mkdir($qr_dir, 0777, true);
@@ -110,41 +91,12 @@ if (isset($_GET['keluar'])) {
     $nisn_keluar = $data['nisn'];
 
     mysqli_query($conn, "UPDATE siswa SET status='keluar' WHERE id=$id");
-    mysqli_query($conn, "DELETE FROM users WHERE username='$nisn_keluar' AND role='siswa'");
 
     header("Location: siswa.php");
     exit;
 }
 
-// Generate akun massal
-if (isset($_POST['generate_akun'])) {
-    $q_siswa = mysqli_query($conn, "SELECT nisn, nama FROM siswa WHERE status='aktif'");
-    $count = 0;
-    while ($s = mysqli_fetch_assoc($q_siswa)) {
-        $username = $s['nisn'];
-        $nama     = $s['nama'];
-        $password = md5($s['nisn']);
-        $role     = 'siswa';
 
-        $cek = mysqli_query($conn, "SELECT id FROM users WHERE username='$username' LIMIT 1");
-        if (mysqli_num_rows($cek) == 0) {
-            if (!mysqli_query($conn, "INSERT INTO users (username, nama, password, role)
-                                 VALUES ('$username', '$nama', '$password', '$role')")) {
-                echo "Error membuat akun untuk $nama: " . mysqli_error($conn);
-                exit;
-            }
-            // Generate QR Jamaah
-            $qr_dir = "assets/qr/";
-            if (!is_dir($qr_dir)) mkdir($qr_dir, 0777, true);
-            if (extension_loaded('gd')) {
-                @QRcode::png($username, $qr_dir . "$username.png", QR_ECLEVEL_L, 4);
-            }
-            $count++;
-        }
-    }
-    echo "<script>alert('Generate akun selesai. $count akun baru dibuat.');window.location='siswa.php';</script>";
-    exit;
-}
 
 // Ambil data untuk edit jika ada
 $edit_data = null;
