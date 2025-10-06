@@ -7,7 +7,6 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
 include "config.php";
 
 $msg_profil = "";
-$msg_password = "";
 
 // Ambil data profil
 $q = $conn->query("SELECT * FROM profil_sekolah LIMIT 1");
@@ -53,29 +52,6 @@ if (isset($_POST['simpan'])) {
 
     $q = $conn->query("SELECT * FROM profil_sekolah LIMIT 1");
     $profil = $q->fetch_assoc();
-}
-
-// Proses ubah password admin (pakai MD5)
-if (isset($_POST['ubah_password'])) {
-    $old     = $_POST['old_password'];
-    $new     = $_POST['new_password'];
-    $confirm = $_POST['confirm_password'];
-
-    // Ambil data admin
-    $qAdmin = $conn->query("SELECT * FROM users WHERE username='admin' LIMIT 1");
-    $admin  = $qAdmin->fetch_assoc();
-
-    if (!$admin) {
-        $msg_password = "<span style='color:red;'>Data admin tidak ditemukan!</span>";
-    } elseif ($admin['password'] !== md5($old)) {
-        $msg_password = "<span style='color:red;'>Password lama salah!</span>";
-    } elseif ($new !== $confirm) {
-        $msg_password = "<span style='color:red;'>Password baru dan konfirmasi tidak cocok!</span>";
-    } else {
-        $hash = md5($new);
-        $conn->query("UPDATE users SET password='$hash' WHERE username='admin'");
-        $msg_password = "<span style='color:green;'>Password berhasil diubah!</span>";
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -204,35 +180,6 @@ if (isset($_POST['ubah_password'])) {
                     </div>
                     <div class="col-12">
                         <button type="submit" name="simpan" class="btn btn-primary btn-custom w-100">Simpan Profil</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <hr />
-
-        <h3>Ubah Password Admin</h3>
-        <p class="text-muted text-center">Gunakan password yang kuat terdiri dari kombinasi huruf besar kecil, angka, dan tanda baca.</p>
-
-        <div class="card">
-            <div class="card-header">Pengaturan Password</div>
-            <div class="card-body">
-                <?php if ($msg_password) echo "<div class='alert alert-info'>$msg_password</div>"; ?>
-                <form method="POST" class="row g-3">
-                    <div class="col-md-4">
-                        <label class="form-label">Password Lama</label>
-                        <input type="password" name="old_password" class="form-control" required />
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Password Baru</label>
-                        <input type="password" name="new_password" class="form-control" required />
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Ulangi Password Baru</label>
-                        <input type="password" name="confirm_password" class="form-control" required />
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" name="ubah_password" class="btn btn-success btn-custom w-100">Ubah Password</button>
                     </div>
                 </form>
             </div>

@@ -9,10 +9,8 @@ include "config.php";
 
 // Jika sudah login, redirect ke dashboard sesuai role
 if (isset($_SESSION['username'])) {
-    if ($_SESSION['role'] === 'admin') {
+    if ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'guru') {
         header("Location: dashboard");
-    } elseif ($_SESSION['role'] === 'guru') {
-        header("Location: dashboard_guru.php");
     } elseif ($_SESSION['role'] === 'siswa') {
         header("Location: dashboard_siswa.php");
     }
