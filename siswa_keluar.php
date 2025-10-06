@@ -6,24 +6,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
 }
 include 'config.php';
 
-// Auto-install phpqrcode if missing
-if (!file_exists('vendor/phpqrcode/qrlib.php')) {
-    $vendorDir = 'vendor/phpqrcode';
-    if (!is_dir($vendorDir)) {
-        mkdir($vendorDir, 0755, true);
-    }
-
-    // Download qrlib.php from GitHub
-    $url = 'https://raw.githubusercontent.com/davidscotttufts/phpqrcode/master/qrlib.php';
-    $content = file_get_contents($url);
-    if ($content !== false) {
-        file_put_contents('vendor/phpqrcode/qrlib.php', $content);
-    } else {
-        die('Error: Gagal mengunduh library phpqrcode. Silakan install manual atau hubungi administrator.');
-    }
-}
-
-require 'vendor/phpqrcode/phpqrcode/qrlib.php';
+require 'vendor/autoload.php';
 
 // Aktifkan siswa kembali
 if (isset($_GET['aktifkan'])) {

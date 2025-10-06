@@ -15,7 +15,7 @@ include 'config.php';
 
 
 
-require 'vendor/phpqrcode/phpqrcode/qrlib.php';
+require 'vendor/autoload.php';
 
 /* ==== Buat tabel users jika belum ada ====
 CREATE TABLE IF NOT EXISTS users (

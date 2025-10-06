@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
 }
 include 'config.php';
 
-require 'vendor/phpqrcode/phpqrcode/qrlib.php';
+require 'vendor/autoload.php';
 require_once 'phpexcel/Classes/PHPExcel.php'; // pakai PHPExcel klasik
 
 $msg = "";
