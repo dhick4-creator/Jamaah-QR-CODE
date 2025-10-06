@@ -1,4 +1,4 @@
-<?php
+u<?php
 session_start();
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     header("Location: index.php");
@@ -143,7 +143,7 @@ if (isset($_POST['simpan'])) {
             <div class="card-header">Informasi Sekolah</div>
             <div class="card-body">
                 <?php if ($msg_profil) echo $msg_profil; ?>
-                <form method="POST" enctype="multipart/form-data" class="row g-3">
+                <form method="POST" enctype="multipart/form-data" class="row g-3" id="profilForm">
                     <div class="col-md-6">
                         <label class="form-label">Nama Sekolah</label>
                         <input type="text" name="nama" class="form-control" value="<?= htmlspecialchars($profil['nama_sekolah']) ?>" required />
@@ -193,6 +193,17 @@ if (isset($_POST['simpan'])) {
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('profilForm').addEventListener('submit', function() {
+            // Hide the form and show progress bar
+            this.style.display = 'none';
+            const progressDiv = document.createElement('div');
+            progressDiv.className = 'progress';
+            progressDiv.innerHTML = '<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 100%"></div>';
+            this.parentNode.insertBefore(progressDiv, this);
+        });
+    </script>
 </body>
 </html>
 
