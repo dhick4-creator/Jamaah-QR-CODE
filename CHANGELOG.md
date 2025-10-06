@@ -1,3 +1,7 @@
+#
+## [1.2.0] - 2025-10-06
+### Added
+- Fitur install.php: instalasi otomatis database dan config saat pertama kali upload ke hosting.
 # Changelog
 
 ## [1.1.0] - 2025-10-06
