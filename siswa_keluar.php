@@ -6,7 +6,11 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
 }
 include 'config.php';
 
-require 'vendor/autoload.php';
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require __DIR__ . '/vendor/autoload.php';
+} else {
+    die('Error: vendor/autoload.php not found. Please run composer install.');
+}
 
 // Aktifkan siswa kembali
 if (isset($_GET['aktifkan'])) {
