@@ -1,4 +1,8 @@
 #
+## [1.2.3] - 2025-10-06
+### Changed
+- Hapus seluruh tampilan versi aplikasi di menu dashboard.
+#
 ## [1.2.2] - 2025-10-06
 ### Changed
 - Hilangkan tampilan versi aplikasi di menu dashboard.

@@ -231,11 +231,7 @@ if (!isset($_SESSION['username']) || ($_SESSION['role'] !== 'admin' && $_SESSION
     </div>
   </div>
 
-  <footer>
-    <div class="container d-flex justify-content-start">
-      <p class="mb-0">Versi Aplikasi: </p>
-    </div>
-  </footer>
+  <!-- Footer versi aplikasi dihapus -->
 
   <script>
     let timeout;
