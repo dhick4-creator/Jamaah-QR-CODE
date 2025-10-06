@@ -1,4 +1,10 @@
 #
+## [1.2.6] - 2025-10-07
+### Fixed
+- Fixed require path for phpqrcode library in siswa.php, siswa_keluar.php, and import_siswa.php to resolve missing file errors.
+- Removed auto-download of phpqrcode library due to broken URL; recommend using composer for dependency management.
+- Updated version to 1.2.6.
+
 ## [1.2.5] - 2025-10-06
 ### Fixed
 - Perbaikan instalasi otomatis library phpqrcode untuk menghindari error pada server hosting.
