@@ -8,7 +8,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
 include 'config.php';
 
 // Lokasi file SQL
-$sqlFile = 'db-absensi-qr-v4.sql';
+$sqlFile = 'db-absensi-jamaah-qr.sql';
 
 // Jika belum ada konfirmasi, tampilkan form konfirmasi
 if (!isset($_POST['confirm'])) {

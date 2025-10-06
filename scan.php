@@ -108,7 +108,7 @@ if (isset($_GET['nisn'])) {
 </head>
 <body class="bg-light">
   <div class="container py-4">
-    <h2><i class="fas fa-qrcode me-2"></i>Scan QR Code Siswa</h2>
+  <h2><i class="fas fa-qrcode me-2"></i>Scan QR Jamaah</h2>
     <a href="dashboard" class="btn btn-outline-secondary btn-custom mb-3">
       <i class="fas fa-arrow-left me-2"></i>Kembali ke Dashboard
     </a>

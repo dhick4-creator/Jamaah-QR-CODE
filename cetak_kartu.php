@@ -112,7 +112,7 @@ while ($data = mysqli_fetch_assoc($result)) {
         $pdf->Image($foto_path, $x + $card_width - 59, $y + $card_height - 28, 25, 25);
     }
 
-    // === QR Code ===
+    // === QR Jamaah ===
     $qr_path = "assets/qr/" . $data['nisn'] . ".png";
     if (file_exists($qr_path)) {
         $pdf->Image($qr_path, $x + $card_width - 31, $y + $card_height - 31, 29, 29);

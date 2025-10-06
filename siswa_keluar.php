@@ -59,7 +59,7 @@ $kelasFilter = isset($_GET['kelas']) ? trim($_GET['kelas']) : '';
           <th>NISN</th>
           <th>Nama</th>
           <th>Kelas</th>
-          <th>QR Code</th>
+          <th>QR Jamaah</th>
           <th>Aksi</th>
         </tr>
       </thead>

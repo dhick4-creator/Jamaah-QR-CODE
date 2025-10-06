@@ -65,7 +65,7 @@ if (isset($_POST['import'])) {
                                          VALUES ('$username', '$nama', '$password', '$role')");
                         }
 
-                        // Buat QR Code
+                        // Buat QR Jamaah
                         $qr_dir = "assets/qr/";
                         if (!is_dir($qr_dir)) mkdir($qr_dir, 0777, true);
                         QRcode::png($nisn, $qr_dir . "$nisn.png", QR_ECLEVEL_L, 4);

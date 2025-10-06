@@ -45,7 +45,7 @@ if (isset($_POST['simpan'])) {
         }
     }
 
-    // Generate QR Code
+  // Generate QR Jamaah
     $qr_dir = "assets/qr/";
     if (!is_dir($qr_dir)) mkdir($qr_dir, 0777, true);
     if (extension_loaded('gd')) {
@@ -123,7 +123,7 @@ if (isset($_POST['generate_akun'])) {
                 echo "Error membuat akun untuk $nama: " . mysqli_error($conn);
                 exit;
             }
-            // Generate QR Code
+            // Generate QR Jamaah
             $qr_dir = "assets/qr/";
             if (!is_dir($qr_dir)) mkdir($qr_dir, 0777, true);
             if (extension_loaded('gd')) {
@@ -312,7 +312,7 @@ $filter_kelas = isset($_GET['kelas']) ? $_GET['kelas'] : '';
                   echo "<th><a href='?sort=$col&order=$next_order&kelas=$filter_kelas' class='text-white text-decoration-none'>" . strtoupper($col) . " $icon</a></th>";
                 }
                 ?>
-                <th class="text-center">QR Code</th>
+                <th class="text-center">QR Jamaah</th>
                 <th class="text-center">Aksi</th>
               </tr>
             </thead>
