@@ -23,7 +23,7 @@ if (!file_exists('vendor/phpqrcode/qrlib.php')) {
     }
 }
 
-require 'vendor/phpqrcode/qrlib.php';
+require 'vendor/phpqrcode/phpqrcode/qrlib.php';
 
 // Aktifkan siswa kembali
 if (isset($_GET['aktifkan'])) {
@@ -77,11 +77,7 @@ $kelasFilter = isset($_GET['kelas']) ? trim($_GET['kelas']) : '';
           <th>NISN</th>
           <th>Nama</th>
           <th>Kelas</th>
-<<<<<<< HEAD
-          <th>QR Code</th>
-=======
           <th>QR Jamaah</th>
->>>>>>> 221b6cccffe028aa08e087dedef1b34cc07599ab
           <th>Aksi</th>
         </tr>
       </thead>
@@ -118,5 +114,3 @@ $kelasFilter = isset($_GET['kelas']) ? trim($_GET['kelas']) : '';
 
 </body>
 </html>
-
-

@@ -23,7 +23,7 @@ if (!file_exists('vendor/phpqrcode/qrlib.php')) {
     }
 }
 
-require 'vendor/phpqrcode/qrlib.php';
+require 'vendor/phpqrcode/phpqrcode/qrlib.php';
 require_once 'phpexcel/Classes/PHPExcel.php'; // pakai PHPExcel klasik
 
 $msg = "";
