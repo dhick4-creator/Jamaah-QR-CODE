@@ -1,4 +1,10 @@
 #
+## [1.2.2] - 2025-10-06
+### Changed
+- Hilangkan tampilan versi aplikasi di menu dashboard.
+### Fixed
+- Perbaikan minor lainnya.
+#
 ## [1.2.1] - 2025-10-06
 ### Fixed
 - Perbaikan install.php: error reporting aktif, pengecekan file SQL, dan pesan error lebih jelas.

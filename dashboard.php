@@ -233,7 +233,7 @@ if (!isset($_SESSION['username']) || ($_SESSION['role'] !== 'admin' && $_SESSION
 
   <footer>
     <div class="container d-flex justify-content-start">
-      <p class="mb-0">Versi Aplikasi: 1.0.0</p>
+      <p class="mb-0">Versi Aplikasi: </p>
     </div>
   </footer>
 
