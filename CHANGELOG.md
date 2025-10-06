@@ -1,4 +1,8 @@
 #
+## [1.2.1] - 2025-10-06
+### Fixed
+- Perbaikan install.php: error reporting aktif, pengecekan file SQL, dan pesan error lebih jelas.
+#
 ## [1.2.0] - 2025-10-06
 ### Added
 - Fitur install.php: instalasi otomatis database dan config saat pertama kali upload ke hosting.

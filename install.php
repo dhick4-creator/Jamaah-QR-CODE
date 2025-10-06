@@ -1,3 +1,8 @@
+// Aktifkan error reporting untuk debug
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 <?php
 // install.php - Setup wizard for Absensi Jamaah QR
 if (file_exists('config.php')) {
@@ -17,22 +22,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Koneksi ke MySQL gagal: ' . mysqli_connect_error();
     } else {
         // Buat database jika belum ada
-        mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS `$name`");
-        mysqli_select_db($conn, $name);
-        // Buat tabel utama (contoh minimal)
-        $sql = file_get_contents('db-absensi-jamaah-qr.sql');
-        if ($sql) {
-            if (mysqli_multi_query($conn, $sql)) {
-                // Simpan config.php
-                $config = "<?php\n$" . "conn = mysqli_connect('{$host}', '{$user}', '{$pass}', '{$name}');\nif (!\$conn) { die('Koneksi gagal'); }\n?>";
-                file_put_contents('config.php', $config);
-                echo '<h3>Instalasi berhasil! Silakan hapus file install.php lalu login.</h3>';
-                exit;
-            } else {
-                $error = 'Gagal membuat tabel: ' . mysqli_error($conn);
-            }
+        if (!mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS `$name`")) {
+            $error = 'Gagal membuat database: ' . mysqli_error($conn);
         } else {
-            $error = 'File db-absensi-jamaah-qr.sql tidak ditemukan.';
+            if (!mysqli_select_db($conn, $name)) {
+                $error = 'Gagal memilih database: ' . mysqli_error($conn);
+            } else {
+                $sqlFile = 'db-absensi-jamaah-qr.sql';
+                if (!file_exists($sqlFile)) {
+                    $error = 'File ' . $sqlFile . ' tidak ditemukan.';
+                } else {
+                    $sql = file_get_contents($sqlFile);
+                    if ($sql) {
+                        if (mysqli_multi_query($conn, $sql)) {
+                            // Selesaikan semua query multi
+                            do { } while (mysqli_more_results($conn) && mysqli_next_result($conn));
+                            // Simpan config.php
+                            $config = "<?php\n$" . "conn = mysqli_connect('{$host}', '{$user}', '{$pass}', '{$name}');\nif (!\$conn) { die('Koneksi gagal'); }\n?>";
+                            file_put_contents('config.php', $config);
+                            echo '<h3>Instalasi berhasil! Silakan hapus file install.php lalu login.</h3>';
+                            exit;
+                        } else {
+                            $error = 'Gagal membuat tabel: ' . mysqli_error($conn);
+                        }
+                    } else {
+                        $error = 'File SQL kosong.';
+                    }
+                }
+            }
         }
     }
 }
