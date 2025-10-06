@@ -1,7 +1,7 @@
 <?php
 include 'session_check.php';
 
-if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['username']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'guru')) {
     header("Location: index.php");
     exit;
 }

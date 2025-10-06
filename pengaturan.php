@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['username']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'guru')) {
     header("Location: index.php");
     exit;
 }
@@ -55,8 +55,18 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     </div>
 
     <div class="d-grid gap-3">
+<?php if ($_SESSION['role'] === 'admin'): ?>
       <a href="profil" class="btn btn-light border menu-btn">
         <i class="fa-solid fa-school text-info"></i> Profil Sekolah
+      </a>
+      <a href="tambah_user" class="btn btn-light border menu-btn">
+        <i class="fa-solid fa-user-plus text-success"></i> Tambah User
+      </a>
+      <a href="kelola_user" class="btn btn-light border menu-btn">
+        <i class="fa-solid fa-users text-info"></i> Kelola User
+      </a>
+      <a href="ubah_password_admin" class="btn btn-light border menu-btn">
+        <i class="fa-solid fa-key text-warning"></i> Ubah Password Admin
       </a>
       <a href="backup_restore" class="btn btn-light border menu-btn">
         <i class="fa-solid fa-database text-primary"></i> Backup & Restore
@@ -74,6 +84,11 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
       <a href="kosongkan_data" class="btn btn-light border menu-btn">
         <i class="fa-solid fa-trash text-danger"></i> Hapus/Kosongkan Data
       </a>
+<?php elseif ($_SESSION['role'] === 'guru'): ?>
+      <a href="ubah_password" class="btn btn-light border menu-btn">
+        <i class="fa-solid fa-key text-warning"></i> Ubah Password
+      </a>
+<?php endif; ?>
     </div>
   </main>
 
