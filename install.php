@@ -1,11 +1,8 @@
 <?php
-?>
 // Aktifkan error reporting untuk debug
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-<?php
 // install.php - Setup wizard for Absensi Jamaah QR
 if (file_exists('config.php')) {
     echo '<h3>Aplikasi sudah terinstal. Hapus file install.php untuk keamanan.</h3>';
