@@ -39,7 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             // Simpan config.php
                             $config = "<?php\n$" . "conn = mysqli_connect('{$host}', '{$user}', '{$pass}', '{$name}');\nif (!\$conn) { die('Koneksi gagal'); }\n?>";
                             file_put_contents('config.php', $config);
-                            echo '<h3>Instalasi berhasil! Silakan hapus file install.php lalu login.</h3>';
+                            echo '<h3>Instalasi berhasil! File install.php akan dihapus otomatis. Silakan login.</h3>';
+                            // Hapus file install.php otomatis
+                            @unlink(__FILE__);
                             exit;
                         } else {
                             $error = 'Gagal membuat tabel: ' . mysqli_error($conn);
