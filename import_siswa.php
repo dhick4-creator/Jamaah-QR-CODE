@@ -5,6 +5,24 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 include 'config.php';
+
+// Auto-install phpqrcode if missing
+if (!file_exists('vendor/phpqrcode/qrlib.php')) {
+    $vendorDir = 'vendor/phpqrcode';
+    if (!is_dir($vendorDir)) {
+        mkdir($vendorDir, 0755, true);
+    }
+
+    // Download qrlib.php from GitHub
+    $url = 'https://raw.githubusercontent.com/davidscotttufts/phpqrcode/master/qrlib.php';
+    $content = file_get_contents($url);
+    if ($content !== false) {
+        file_put_contents('vendor/phpqrcode/qrlib.php', $content);
+    } else {
+        die('Error: Gagal mengunduh library phpqrcode. Silakan install manual atau hubungi administrator.');
+    }
+}
+
 require 'vendor/phpqrcode/qrlib.php';
 require_once 'phpexcel/Classes/PHPExcel.php'; // pakai PHPExcel klasik
 
@@ -65,11 +83,7 @@ if (isset($_POST['import'])) {
                                          VALUES ('$username', '$nama', '$password', '$role')");
                         }
 
-<<<<<<< HEAD
-                        // Buat QR Code
-=======
                         // Buat QR Jamaah
->>>>>>> 221b6cccffe028aa08e087dedef1b34cc07599ab
                         $qr_dir = "assets/qr/";
                         if (!is_dir($qr_dir)) mkdir($qr_dir, 0777, true);
                         QRcode::png($nisn, $qr_dir . "$nisn.png", QR_ECLEVEL_L, 4);
@@ -80,8 +94,8 @@ if (isset($_POST['import'])) {
                 }
             }
 
-            $msg = "✅ Import selesai. <br> 
-                    Berhasil: <b>$berhasil</b> <br> 
+            $msg = "✅ Import selesai. <br>
+                    Berhasil: <b>$berhasil</b> <br>
                     Gagal: <b>$gagal</b>";
         } catch (Exception $e) {
             $msg = "❌ Gagal membaca file: " . $e->getMessage();
@@ -131,5 +145,3 @@ if (isset($_POST['import'])) {
 
 </body>
 </html>
-
-

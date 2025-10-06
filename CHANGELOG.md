@@ -1,11 +1,15 @@
 #
+## [1.2.5] - 2025-10-06
+### Fixed
+- Perbaikan instalasi otomatis library phpqrcode untuk menghindari error pada server hosting.
+#
 ## [1.2.4] - 2025-10-06
 ### Added
 - Menambahkan dependency management dengan Composer untuk library phpqrcode.
 ### Changed
 - Update progress di update_aplikasi.php sekarang menampilkan persentase saja tanpa listing file.
 ### Fixed
-- Perbaikan error require vendor/phpqrcode/qrlib.php dengan instalasi library via Composer.
+- Perbaikan error require vendor/phpqrcode/qrlib.php dengan instalasi otomatis library dari GitHub jika belum ada.
 #
 ## [1.2.3] - 2025-10-06
 ### Changed
