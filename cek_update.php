@@ -1,5 +1,4 @@
 <?php
-$currentVersion = "1.0.0";
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -98,12 +97,24 @@ $currentVersion = "1.0.0";
   </div>
 
   <script>
-    const currentVersion = "<?= $currentVersion ?>";
     const statusDiv = document.getElementById("status");
+    let currentVersion;
 
-    // Ambil version.json dari repository lokal
+    // Ambil versi lokal
     fetch("./version.json")
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        return res.json();
+      })
+      .then(data => {
+        currentVersion = data.version;
+        // Ambil versi terbaru dari GitHub
+        return fetch("https://raw.githubusercontent.com/dhick4-creator/Jamaah-QR-CODE/blackboxai/update-cek-update/version.json");
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        return res.json();
+      })
       .then(data => {
         const latestVersion = data.version;
         const updateUrl = data.url;
@@ -132,7 +143,7 @@ $currentVersion = "1.0.0";
         }
       })
       .catch(err => {
-        statusDiv.innerHTML = `<p style="color:red;">Gagal mengecek update!</p>`;
+        statusDiv.innerHTML = `<p style="color:red;">Gagal mengecek update: ${err.message}</p>`;
       });
   </script>
 </body>

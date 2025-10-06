@@ -1,5 +1,8 @@
-- [ ] Ubah background header tabel di belum_absensi.php menjadi solid blue (#007bff) seperti di siswa.php
-- [ ] Tambahkan vertical-align: middle pada .table td untuk konsistensi
-- [ ] Sesuaikan background body menjadi #f8f9fa seperti di siswa.php
-- [ ] Sesuaikan box-shadow card menjadi 0 4px 6px rgba(0, 0, 0, 0.1) untuk match
-- [ ] Hapus backdrop-filter dan background rgba pada card jika perlu
+- [x] Perbaiki cek_update.php untuk mengambil versi terbaru dari GitHub
+- [x] Hapus hardcoded currentVersion
+- [x] Tambahkan fetch lokal untuk currentVersion
+- [x] Ubah fetch ke remote untuk latestVersion
+- [x] Tambahkan detail error pada catch
+- [x] Tambahkan check res.ok untuk fetch
+- [x] Update URL ke main branch setelah repo public
+- [ ] Test cek update

@@ -16,7 +16,11 @@ if (!isset($_SESSION['username']) || !in_array($_SESSION['role'], ['admin', 'gur
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
 <body class="container mt-4">
+<<<<<<< HEAD
   <h2>📷 Scan QR Code Siswa Plus Kirim WhatsApp</h2>
+=======
+  <h2>📷 Scan QR Jamaah Plus Kirim WhatsApp</h2>
+>>>>>>> 221b6cccffe028aa08e087dedef1b34cc07599ab
   
   <!-- ✅ Tambahan keterangan -->
   <div class="alert alert-warning">
